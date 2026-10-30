@@ -145,14 +145,21 @@ Avoid weak criteria such as:
 
 Replace them with observable behavior or a numeric target confirmed by the user or repository constraints.
 
-## 5. Review and refine
+## 5. Maintain the PoC file-change list
+
+After adding or updating implementation, specification, documentation, or workflow files for the feature, update `poc-docs/README.md` under its `## File changes` section. Preserve delivery order, use workspace-relative links, include every file added or updated for that phase, and avoid duplicate entries when a file changes again later.
+
+When implementation guidance is requested, record implementation and test paths in the specification plan, then add the actual added or updated paths to the README after the work is verified. Do not include deleted paths unless the repository convention explicitly documents deletions.
+
+## 6. Review and refine
 
 After writing the file:
 
 1. summarize what was decided and what remains blocked;
 2. identify the most ambiguous acceptance criteria;
 3. ask focused follow-up questions for unresolved decisions;
-4. update the specification until the user accepts it or explicitly keeps items blocked.
+4. update the specification until the user accepts it or explicitly keeps items blocked;
+5. confirm that every added or updated file for the phase appears in the PoC README file-change list.
 
 When implementation guidance is also requested, keep it in the Plan section. This skill does not implement that plan unless the user separately asks it to.
 

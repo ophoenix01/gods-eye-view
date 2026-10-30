@@ -47,3 +47,15 @@ explicitly out of scope:
 The deliverables for this Phase 0 scope are the [source
 code](../src/) and this README documentation. The complete scope is recorded
 in the [PoC Scope Specification](../specs/poc-scope-specification.md).
+
+## File changes
+
+Files added or updated for this PoC, in delivery order:
+
+1. [.agents/skills/spec-workflow/SKILL.md](../.agents/skills/spec-workflow/SKILL.md)
+2. [specs/poc-scope-specification.md](../specs/poc-scope-specification.md)
+3. [poc-docs/README.md](README.md)
+4. [specs/selected-area-vessel-tracking-engine.md](../specs/selected-area-vessel-tracking-engine.md)
+5. [src/data/vesselTrackingEngine.js](../src/data/vesselTrackingEngine.js)
+6. [src/data/vesselTrackingEngine.test.mjs](../src/data/vesselTrackingEngine.test.mjs)
+
