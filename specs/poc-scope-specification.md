@@ -23,57 +23,57 @@
 
 #### Operational problem
 
-- [ ] The README describes the operational problem of understanding which vessels enter or leave a Coast Guard surveyor-selected maritime area.
-- [ ] The README identifies Coast Guard surveyors as the intended users.
-- [ ] The README explains that the improvement should improve vessel tracking within a selected area compared with the current draw-tool and vessel workflows.
-- [ ] The README explains why a user-defined polygon and vessel crossing view are useful for this operational need.
+- [x] The README describes the operational problem of understanding which vessels enter or leave a Coast Guard surveyor-selected maritime area.
+- [x] The README identifies Coast Guard surveyors as the intended users.
+- [x] The README explains that the improvement should improve vessel tracking within a selected area compared with the current draw-tool and vessel workflows.
+- [x] The README explains why a user-defined polygon and vessel crossing view are useful for this operational need.
 
 #### POC behavior
 
-- [ ] The POC supports one active user-drawn polygon at a time.
-- [ ] The selected polygon is evaluated in memory for the duration of the demonstration.
-- [ ] The POC uses deterministic fixture positions to demonstrate vessel membership and transitions.
-- [ ] A vessel changing from outside to inside the polygon is represented as an incoming crossing.
-- [ ] A vessel changing from inside to outside the polygon is represented as an outgoing crossing.
-- [ ] Vessel identity in fixture records is identified by MMSI.
-- [ ] Fixture replay does not depend on live AIS credentials, network availability, or a vessel physically crossing a boundary.
+- [x] The POC supports one active user-drawn polygon at a time.
+- [x] The selected polygon is evaluated in memory for the duration of the demonstration.
+- [x] The POC uses deterministic fixture positions to demonstrate vessel membership and transitions.
+- [x] A vessel changing from outside to inside the polygon is represented as an incoming crossing.
+- [x] A vessel changing from inside to outside the polygon is represented as an outgoing crossing.
+- [x] Vessel identity in fixture records is identified by MMSI.
+- [x] Fixture replay does not depend on live AIS credentials, network availability, or a vessel physically crossing a boundary.
 
 #### Timing and data assumptions
 
-- [ ] The README states that crossing results are based on snapshot observations rather than exact boundary timestamps.
-- [ ] The README states that delayed AIS data may produce a crossing result after the vessel's actual boundary event.
-- [ ] The README states that a refresh cycle may miss intermediate vessel movement and may show only the final snapshot state.
-- [ ] The README does not present snapshot-detected crossings as exact real-time operational tracking.
+- [x] The README states that crossing results are based on snapshot observations rather than exact boundary timestamps.
+- [x] The README states that delayed AIS data may produce a result after the vessel's actual boundary event.
+- [x] The README states that a refresh cycle may miss intermediate vessel movement and may show only the final snapshot state.
+- [x] The README does not present snapshot-detected crossings as exact real-time operational tracking.
 
 #### Scope exclusions
 
-- [ ] The README explicitly excludes multiple active zones from this POC.
-- [ ] The README explicitly excludes persistent crossing history.
-- [ ] The README explicitly excludes alerts or notifications.
-- [ ] The README explicitly excludes production monitoring guarantees and operational certification.
-- [ ] The README does not imply support for replacing live maritime surveillance systems.
+- [x] The README explicitly excludes multiple active zones from this POC.
+- [x] The README explicitly excludes persistent crossing history.
+- [x] The README explicitly excludes alerts or notifications.
+- [x] The README explicitly excludes production monitoring guarantees and operational certification.
+- [x] The README does not imply support for replacing live maritime surveillance systems.
 
 ## Plan
 
-- [ ] Draft the README problem statement from the Coast Guard surveyor perspective.
-- [ ] Document the selected improvement: better tracking of vessels in a user-selected area.
-- [ ] Document fixture-only demonstration assumptions and setup.
-- [ ] Describe one active polygon, in-memory state, and snapshot-based crossings.
-- [ ] List MMSI, AIS sampling, delayed-position, and missed-crossing assumptions.
-- [ ] Record explicit exclusions for multiple zones, persistence, alerts, and production monitoring.
-- [ ] Review the scope text against the acceptance criteria.
-- [ ] Add source code and README links to the POC deliverable structure when implementation begins.
+- [x] Draft the README problem statement from the Coast Guard surveyor perspective.
+- [x] Document the selected improvement: better tracking of vessels in a user-selected area.
+- [x] Document fixture-only demonstration assumptions and setup.
+- [x] Describe one active polygon, in-memory state, and snapshot-based crossings.
+- [x] List MMSI, AIS sampling, delayed-position, and missed-crossing assumptions.
+- [x] Record explicit exclusions for multiple zones, persistence, alerts, and production monitoring.
+- [x] Review the scope text against the acceptance criteria.
+- [x] Add source code and README links to the POC deliverable structure when implementation begins.
 
 ## Validation
 
-- [ ] Confirm a Coast Guard surveyor can understand the operational problem without technical implementation knowledge.
-- [ ] Confirm the README identifies Coast Guard surveyors as intended users.
-- [ ] Confirm the README explains why selected-area vessel tracking improves the current draw-tool and vessel workflows.
-- [ ] Confirm one active polygon and fixture replay are unambiguous throughout the README.
-- [ ] Confirm snapshot timing, delayed observations, and missed intermediate crossings are documented.
-- [ ] Confirm MMSI is described as the vessel identifier.
-- [ ] Confirm multi-zone support, persistence, alerts, and production monitoring are visibly listed as out of scope.
-- [ ] Confirm fixture replay can be demonstrated without live AIS credentials or network access.
-- [ ] Confirm the README identifies source code and documentation as the POC deliverables.
-- [ ] Review the specification for unsupported claims or assumptions that were not confirmed.
-- [ ] Confirm no implementation code or repository commit was created as part of this Phase 0 workflow.
+- [x] Confirm a Coast Guard surveyor can understand the operational problem without technical implementation knowledge.
+- [x] Confirm the README identifies Coast Guard surveyors as intended users.
+- [x] Confirm the README explains why selected-area vessel tracking improves the current draw-tool and vessel workflows.
+- [x] Confirm one active polygon and fixture replay are unambiguous throughout the README.
+- [x] Confirm snapshot timing, delayed observations, and missed intermediate crossings are documented.
+- [x] Confirm MMSI is described as the vessel identifier.
+- [x] Confirm multi-zone support, persistence, alerts, and production monitoring are visibly listed as out of scope.
+- [x] Confirm fixture replay can be demonstrated without live AIS credentials or network access.
+- [x] Confirm the README identifies source code and documentation as the POC deliverables.
+- [x] Review the specification for unsupported claims or assumptions that were not confirmed.
+- [x] Confirm no implementation code or repository commit was created as part of this Phase 0 workflow.
