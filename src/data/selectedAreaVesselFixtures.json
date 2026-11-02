@@ -1,0 +1,42 @@
+{
+  "polygon": [
+    [0, 0],
+    [10, 0],
+    [0, 10],
+    [0, 0]
+  ],
+  "snapshots": [
+    {
+      "timestamp": "2026-01-01T00:00:00Z",
+      "observations": [
+        { "mmsi": "123456789", "latitude": 2, "longitude": 2 },
+        { "mmsi": "987654321", "latitude": 8, "longitude": 8 }
+      ]
+    },
+    {
+      "timestamp": "2026-01-01T00:01:00Z",
+      "observations": [
+        { "mmsi": "123456789", "latitude": 2, "longitude": 2 },
+        { "mmsi": "987654321", "latitude": 2, "longitude": 3 }
+      ]
+    },
+    {
+      "timestamp": "2026-01-01T00:02:00Z",
+      "observations": [
+        { "mmsi": "123456789", "latitude": 8, "longitude": 8 },
+        { "mmsi": "987654321", "latitude": 2, "longitude": 3 }
+      ]
+    },
+    {
+      "timestamp": "2026-01-01T00:03:00Z",
+      "observations": [{ "mmsi": "987654321", "latitude": 2, "longitude": 3 }]
+    },
+    {
+      "timestamp": "2026-01-01T00:04:00Z",
+      "observations": [
+        { "mmsi": "123456789", "latitude": 8, "longitude": 8 },
+        { "mmsi": "987654321", "latitude": 2, "longitude": 3 }
+      ]
+    }
+  ]
+}

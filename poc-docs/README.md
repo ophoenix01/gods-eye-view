@@ -58,4 +58,8 @@ Files added or updated for this PoC, in delivery order:
 4. [specs/selected-area-vessel-tracking-engine.md](../specs/selected-area-vessel-tracking-engine.md)
 5. [src/data/vesselTrackingEngine.js](../src/data/vesselTrackingEngine.js)
 6. [src/data/vesselTrackingEngine.test.mjs](../src/data/vesselTrackingEngine.test.mjs)
-
+7. [poc-docs/vessel-traffic-draw-tool-poc.md](vessel-traffic-draw-tool-poc.md)
+8. [specs/selected-area-vessel-fixture-replay.md](../specs/selected-area-vessel-fixture-replay.md)
+9. [src/data/selectedAreaVesselFixtures.json](../src/data/selectedAreaVesselFixtures.json)
+10. [src/data/vesselFixtureReplay.js](../src/data/vesselFixtureReplay.js)
+11. [src/data/vesselFixtureReplay.test.mjs](../src/data/vesselFixtureReplay.test.mjs)
