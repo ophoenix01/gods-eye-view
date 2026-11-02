@@ -63,6 +63,23 @@ test('incoming crossing is published from the bundled fixture', async () => {
   assert.equal(result.transitions.incoming[0].estimate, 'snapshot-based');
 });
 
+test('outgoing, unchanged, and absent bundled snapshots replay in order', async () => {
+  const loaded = await loadVesselFixture(FIXTURE_URL);
+  const replay = new VesselFixtureReplay();
+  replay.loadFixture(loaded.fixture);
+  replay.start();
+
+  const incoming = replay.step();
+  assert.equal(incoming.transitions.incoming.length, 1);
+  const outgoing = replay.step();
+  assert.equal(outgoing.transitions.outgoing.length, 1);
+  assert.equal(outgoing.transitions.outgoing[0].mmsi, '123456789');
+  const absent = replay.step();
+  assert.deepEqual(absent.transitions.incoming, []);
+  assert.deepEqual(absent.transitions.outgoing, []);
+  assert.equal(replay.getState().engine.memberships['123456789'], 'outside');
+});
+
 test('restart restores baseline and clears prior crossings', async () => {
   const loaded = await loadVesselFixture(FIXTURE_URL);
   const replay = new VesselFixtureReplay();
@@ -98,6 +115,29 @@ test('rejects empty, duplicate MMSI, and invalid observation fixtures', () => {
   assert.equal(validateVesselFixture(duplicate).valid, false);
   assert.equal(validateVesselFixture(duplicate).snapshotIndex, 0);
   assert.equal(validateVesselFixture(duplicate).code, 'duplicate-mmsi');
+});
+
+test('structured validation names invalid timestamps, coordinates, and MMSIs', () => {
+  const invalidTimestamp = fixture();
+  invalidTimestamp.snapshots[0].timestamp = 'not-a-date';
+  assert.equal(
+    validateVesselFixture(invalidTimestamp).code,
+    'invalid-timestamp',
+  );
+  assert.equal(validateVesselFixture(invalidTimestamp).snapshotIndex, 0);
+
+  const invalidCoordinate = fixture();
+  invalidCoordinate.snapshots[0].observations[0].latitude = 91;
+  assert.equal(
+    validateVesselFixture(invalidCoordinate).code,
+    'invalid-observation',
+  );
+  assert.equal(validateVesselFixture(invalidCoordinate).snapshotIndex, 0);
+
+  const invalidMmsi = fixture();
+  invalidMmsi.snapshots[0].observations[0].mmsi = 'not-an-mmsi';
+  assert.equal(validateVesselFixture(invalidMmsi).code, 'invalid-observation');
+  assert.equal(validateVesselFixture(invalidMmsi).snapshotIndex, 0);
 });
 
 test('final snapshot reports completion and advancing beyond it leaves state unchanged', async () => {
