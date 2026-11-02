@@ -45,8 +45,12 @@ export function mapSelectedAreaVesselState(state = {}) {
       frozen && state.error
         ? `${state.error.code}${state.error.reason ? `: ${state.error.reason}` : ''}`
         : '',
-    previousDisabled: true,
-    previousReason: 'Previous snapshot navigation is not supported.',
+    previousDisabled:
+      !fixtureLoaded || !polygon || frozen || state.activeSnapshotIndex <= 0,
+    previousReason:
+      state.activeSnapshotIndex <= 0
+        ? 'Previous snapshot is not available at the baseline.'
+        : '',
     nextDisabled: !fixtureLoaded || !polygon || frozen || complete,
     restartDisabled: !fixtureLoaded || !polygon,
   };
@@ -130,7 +134,7 @@ export function initSelectedAreaVesselPanel({ integration, document }) {
 
   const unsubscribe = integration.subscribe(render);
   const listeners = [
-    [previous, 'click', () => {}],
+    [previous, 'click', () => integration.previous()],
     [next, 'click', () => integration.next()],
     [restart, 'click', () => integration.restart()],
     [

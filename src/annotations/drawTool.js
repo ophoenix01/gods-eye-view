@@ -70,7 +70,7 @@ const PREVIEW = {
  * @param {{viewer: Cesium.Viewer, annotations: {annotate: Function, clear: Function}}} deps
  * @returns {{destroy: Function}|null}
  */
-export function initDrawTool({ viewer, annotations }) {
+export function initDrawTool({ viewer, annotations, onArea }) {
   const toggle = document.getElementById('draw-toggle');
   const modeRow = document.getElementById('draw-mode-row');
   const labelRow = document.getElementById('draw-label-row');
@@ -254,6 +254,12 @@ export function initDrawTool({ viewer, annotations }) {
       });
       if (destroyed || attempt !== generation) return result;
       if (result?.drawn === 0) setHint(t('That shape could not be placed.'));
+      if (
+        result?.drawn > 0 &&
+        spec.type === 'area' &&
+        typeof onArea === 'function'
+      )
+        onArea(spec.ring);
       return result;
     } catch (error) {
       if (destroyed || attempt !== generation) return null;

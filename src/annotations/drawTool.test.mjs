@@ -37,6 +37,28 @@ test('the application composition wires the draw tool and owns its teardown', ()
     /import selectedAreaVesselFixtures from '\.\.\/data\/selectedAreaVesselFixtures\.json';/,
     'the selected-area fixture must be bundled instead of fetched through the tunnel',
   );
+  assert.match(
+    tools,
+    /activateOnArea: true/,
+    'selected-area replay must activate lazily after a valid draw area',
+  );
+  const integrationAt = tools.indexOf(
+    'const selectedAreaVessel = initSelectedAreaVesselIntegration',
+  );
+  const panelAt = tools.indexOf(
+    'const selectedAreaVesselPanel = initSelectedAreaVesselPanel',
+  );
+  const integrationDestroy = tools.indexOf(
+    'defer(() => selectedAreaVessel.destroy());',
+  );
+  const panelDestroy = tools.indexOf(
+    'defer(() => selectedAreaVesselPanel?.destroy());',
+  );
+  assert.ok(integrationAt > engineAt && panelAt > integrationAt);
+  assert.ok(
+    panelDestroy > integrationDestroy,
+    'reverse cleanup should unsubscribe the panel before destroying integration',
+  );
   // The tool holds a pointer claim, DOM listeners and a data source, so the
   // application lifetime disposes it — not whoever last pressed the button.
   const deferAt = tools.indexOf('defer(() => drawTool?.destroy());');

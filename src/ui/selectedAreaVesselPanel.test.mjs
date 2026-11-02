@@ -66,3 +66,11 @@ test('maps no-polygon and fixture-state separately', () => {
   assert.equal(view.fixtureLoaded, false);
   assert.equal(view.previousDisabled, true);
 });
+
+test('previous is enabled after advancing beyond the baseline', () => {
+  const view = mapSelectedAreaVesselState(
+    state({ activeSnapshotIndex: 2 }),
+  );
+  assert.equal(view.previousDisabled, false);
+  assert.equal(view.previousReason, '');
+});
