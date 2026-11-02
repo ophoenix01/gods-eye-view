@@ -63,3 +63,6 @@ Files added or updated for this PoC, in delivery order:
 9. [src/data/selectedAreaVesselFixtures.json](../src/data/selectedAreaVesselFixtures.json)
 10. [src/data/vesselFixtureReplay.js](../src/data/vesselFixtureReplay.js)
 11. [src/data/vesselFixtureReplay.test.mjs](../src/data/vesselFixtureReplay.test.mjs)
+12. [specs/selected-area-vessel-draw-integration.md](../specs/selected-area-vessel-draw-integration.md)
+13. [src/annotations/selectedAreaVesselIntegration.js](../src/annotations/selectedAreaVesselIntegration.js)
+14. [src/annotations/selectedAreaVesselIntegration.test.mjs](../src/annotations/selectedAreaVesselIntegration.test.mjs)

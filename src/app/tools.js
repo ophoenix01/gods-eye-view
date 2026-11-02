@@ -1,6 +1,7 @@
 import { SceneDirector } from '../scenes/director.js';
 import { initAnnotations } from '../annotations/index.js';
 import { initDrawTool } from '../annotations/drawTool.js';
+import { initSelectedAreaVesselIntegration } from '../annotations/selectedAreaVesselIntegration.js';
 import { initGeoFileImport } from '../ui/geoFileImport.js';
 import { initImageryBoxTool } from '../ui/imageryBoxTool.js';
 import { createRecentImageryPanel } from '../ui/recentImagery.js';
@@ -53,6 +54,14 @@ export function createApplicationTools({
     if (window.__gevAnnotations === annotations) delete window.__gevAnnotations;
     annotations.destroy();
   });
+  const selectedAreaVessel = initSelectedAreaVesselIntegration({
+    annotations,
+    fixtureUrl: new URL(
+      '../data/selectedAreaVesselFixtures.json',
+      import.meta.url,
+    ),
+  });
+  defer(() => selectedAreaVessel.destroy());
   // DISPLAY ▸ Draw: the same whiteboard, drawn by hand. It claims the pointer
   // while a session is open, so its teardown belongs to the application
   // lifetime rather than to whoever last pressed the button.
@@ -175,6 +184,7 @@ export function createApplicationTools({
     cockpitCloudEffects,
     getRenderGovernorDiagnostics,
     surfaceServices: operations.surface,
+    selectedAreaVessel,
     requestRender: governorRequestRender,
   };
   const debug = window.__godsEyeView;

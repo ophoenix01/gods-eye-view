@@ -24,8 +24,11 @@ export function validateVesselFixture(fixture) {
   if (!Array.isArray(fixture.snapshots) || fixture.snapshots.length === 0) {
     return validationError('missing-snapshots');
   }
-  const polygon = validatePolygon(fixture.polygon);
-  if (!polygon.valid) {
+  const hasPolygon = Object.prototype.hasOwnProperty.call(fixture, 'polygon');
+  const polygon = hasPolygon
+    ? validatePolygon(fixture.polygon)
+    : { valid: true };
+  if (hasPolygon && !polygon.valid) {
     return validationError('invalid-polygon', null, polygon.reason);
   }
 
@@ -80,6 +83,7 @@ export class VesselFixtureReplay {
     this.frozen = false;
     this.error = null;
     this.sequenceComplete = false;
+    this.activePolygon = null;
     this.engine.reset();
     return this.getState();
   }
@@ -100,12 +104,40 @@ export class VesselFixtureReplay {
     return this.restart();
   }
 
+  replacePolygon(ring) {
+    const polygon = validatePolygon(ring);
+    if (!polygon.valid) {
+      this.error = validationError('invalid-polygon', null, polygon.reason);
+      return { valid: false, error: this.error, state: this.getState() };
+    }
+    this.activePolygon = polygon.ring;
+    return this.restart();
+  }
+
+  clearPolygon() {
+    this.activePolygon = null;
+    this.activeSnapshotIndex = -1;
+    this.sequenceComplete = false;
+    this.frozen = false;
+    this.error = null;
+    this.engine.reset();
+    return this.getState();
+  }
+
   restart() {
     if (!this.snapshots.length) {
       return { valid: false, error: this.error, state: this.getState() };
     }
     this.engine.reset();
-    const polygon = this.engine.setPolygon(this.fixture.polygon);
+    const polygonRing = this.activePolygon || this.fixture.polygon;
+    if (!Array.isArray(polygonRing)) {
+      return {
+        valid: false,
+        error: validationError('invalid-polygon', null, 'missing-polygon'),
+        state: this.getState(),
+      };
+    }
+    const polygon = this.engine.setPolygon(polygonRing);
     this.frozen = false;
     this.error = null;
     this.activeSnapshotIndex = -1;
