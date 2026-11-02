@@ -6,6 +6,7 @@ import { initSelectedAreaVesselPanel } from '../ui/selectedAreaVesselPanel.js';
 import { initGeoFileImport } from '../ui/geoFileImport.js';
 import { initImageryBoxTool } from '../ui/imageryBoxTool.js';
 import { createRecentImageryPanel } from '../ui/recentImagery.js';
+import selectedAreaVesselFixtures from '../data/selectedAreaVesselFixtures.json';
 import { initGevVoiceCommands } from '../voice/gevRealtime.js';
 import { installViews, isEmbeddedInline } from './embed.js';
 import { installScopeMask, destroyScopeMask } from '../scopeMask.js';
@@ -57,10 +58,7 @@ export function createApplicationTools({
   });
   const selectedAreaVessel = initSelectedAreaVesselIntegration({
     annotations,
-    fixtureUrl: new URL(
-      '../data/selectedAreaVesselFixtures.json',
-      import.meta.url,
-    ),
+    fixture: selectedAreaVesselFixtures,
   });
   defer(() => selectedAreaVessel.destroy());
   const selectedAreaVesselPanel = initSelectedAreaVesselPanel({

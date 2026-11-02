@@ -140,11 +140,41 @@ test('clear resets replay and destroy unsubscribes area changes', async () => {
   annotations.emit({ type: 'clear' });
   assert.equal(annotations.listeners.size, 1);
   assert.equal(integration.getState().activeSnapshotIndex, -1);
+  assert.ok(integration.getState().fixture);
 
   integration.destroy();
   assert.equal(annotations.listeners.size, 0);
   annotations.emit({ type: 'area', ring: [[0, 0], [1, 0], [0, 1]] });
   assert.equal(integration.getState().activeSnapshotIndex, -1);
+});
+
+test('drawing after clear restarts the retained fixture', async () => {
+  const annotations = mockAnnotations();
+  const integration = initSelectedAreaVesselIntegration({
+    annotations,
+    fixture,
+  });
+  await integration.loading;
+
+  annotations.emit({ type: 'clear' });
+  annotations.emit({
+    type: 'area',
+    ring: [
+      [20, 20],
+      [30, 20],
+      [20, 30],
+      [20, 20],
+    ],
+  });
+
+  const state = integration.getState();
+  assert.ok(state.fixture);
+  assert.equal(state.activeSnapshotIndex, 0);
+  assert.deepEqual(state.engine.polygon, [
+    [20, 20],
+    [30, 20],
+    [20, 30],
+  ]);
 });
 
 test('fixtures without a polygon remain inactive until a ring is drawn', async () => {
