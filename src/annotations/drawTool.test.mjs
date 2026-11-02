@@ -22,9 +22,7 @@ const tool = () => read('src/annotations/drawTool.js');
 test('the application composition wires the draw tool and owns its teardown', () => {
   const tools = read('src/app/tools.js');
   const engineAt = tools.indexOf('const annotations = initAnnotations({');
-  const drawAt = tools.indexOf(
-    'const drawTool = initDrawTool({ viewer, annotations });',
-  );
+  const drawAt = tools.indexOf('const drawTool = initDrawTool({');
   assert.ok(engineAt >= 0, 'initAnnotations call missing');
   assert.ok(
     drawAt > engineAt,

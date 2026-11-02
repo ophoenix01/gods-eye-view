@@ -62,6 +62,56 @@ test('valid manual area replaces the fixture polygon and restarts baseline', asy
   ]);
 });
 
+test('manual area survives fixture loading', async () => {
+  const annotations = mockAnnotations();
+  const integration = initSelectedAreaVesselIntegration({
+    annotations,
+    fixture,
+  });
+
+  annotations.emit({
+    type: 'area',
+    ring: [
+      [20, 20],
+      [30, 20],
+      [20, 30],
+      [20, 20],
+    ],
+  });
+  await integration.loading;
+
+  const state = integration.getState();
+  assert.equal(state.activeSnapshotIndex, 0);
+  assert.deepEqual(state.engine.polygon, [
+    [20, 20],
+    [30, 20],
+    [20, 30],
+  ]);
+});
+
+test('direct polygon callback survives fixture loading', async () => {
+  const integration = initSelectedAreaVesselIntegration({
+    annotations: mockAnnotations(),
+    fixture,
+  });
+
+  integration.replacePolygon([
+    [20, 20],
+    [30, 20],
+    [20, 30],
+    [20, 20],
+  ]);
+  await integration.loading;
+
+  const state = integration.getState();
+  assert.equal(state.activeSnapshotIndex, 0);
+  assert.deepEqual(state.engine.polygon, [
+    [20, 20],
+    [30, 20],
+    [20, 30],
+  ]);
+});
+
 test('invalid rings preserve active replay state', async () => {
   const annotations = mockAnnotations();
   const integration = initSelectedAreaVesselIntegration({
