@@ -142,6 +142,42 @@
         <button class="pp-mode-btn draw-clear-btn" id="draw-clear" type="button" title="Remove every mark from the board" data-i18n-title data-i18n>Clear</button>
         <span class="draw-hint" id="draw-hint" aria-live="polite"></span>
       </div>
+      <section class="selected-area-vessel-panel" id="selected-area-vessel-panel" aria-labelledby="selected-area-vessel-heading" translate="no">
+        <button class="selected-area-vessel-collapse" id="selected-area-vessel-collapse" type="button" aria-expanded="true" aria-controls="selected-area-vessel-content">
+          <span id="selected-area-vessel-heading">Selected-area vessels</span>
+          <span aria-hidden="true">−</span>
+        </button>
+        <div id="selected-area-vessel-content">
+          <p class="selected-area-vessel-state" id="selected-area-vessel-state">No active polygon</p>
+          <p class="selected-area-vessel-error" id="selected-area-vessel-error" hidden></p>
+          <p class="selected-area-vessel-timestamp" id="selected-area-vessel-timestamp"></p>
+          <div class="selected-area-vessel-lists">
+            <section>
+              <h3>Inside</h3>
+              <ul id="selected-area-vessel-inside"><li>None</li></ul>
+            </section>
+            <section>
+              <h3>Outside</h3>
+              <ul id="selected-area-vessel-outside"><li>None</li></ul>
+            </section>
+            <section>
+              <h3>Incoming</h3>
+              <ul id="selected-area-vessel-incoming"><li>None</li></ul>
+            </section>
+            <section>
+              <h3>Outgoing</h3>
+              <ul id="selected-area-vessel-outgoing"><li>None</li></ul>
+            </section>
+          </div>
+          <p class="selected-area-vessel-estimate">Crossings and timestamps are snapshot-based estimates, not exact boundary times.</p>
+          <div class="selected-area-vessel-controls" aria-label="Fixture replay controls">
+            <button type="button" id="selected-area-vessel-previous" disabled aria-label="Previous snapshot">Previous</button>
+            <button type="button" id="selected-area-vessel-next" disabled aria-label="Next snapshot">Next</button>
+            <button type="button" id="selected-area-vessel-restart" disabled aria-label="Restart fixture replay">Restart</button>
+          </div>
+          <p class="selected-area-vessel-status" id="selected-area-vessel-status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
     </div>
     <div class="pp-toggle-group" id="geo-import-group">
       <button class="pp-toggle-btn" id="geo-import-button" type="button" title="Show your own GeoJSON, KML, KMZ or GPX files on the globe (or drop them onto it). File bytes stay on this device; overlays can appear in map screenshots shared with voice." data-i18n-title>
