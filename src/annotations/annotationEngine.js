@@ -144,6 +144,7 @@ export function createAnnotationEngine({
   // task with the FINAL outcome — resolved or failed — so narration that said
   // "tracing the boundary now" can later honestly confirm or correct itself.
   const outlineListeners = new Set();
+  const areaListeners = new Set();
 
   function emitOutlineEvent(evt) {
     for (const listener of outlineListeners) {
@@ -153,6 +154,34 @@ export function createAnnotationEngine({
         /* a listener error must never break the upgrade */
       }
     }
+  }
+
+  function emitAreaEvent(event) {
+    for (const listener of areaListeners) {
+      try {
+        listener(event);
+      } catch {
+        /* an integration listener error must not break annotation placement */
+      }
+    }
+  }
+
+  function emitCompletedManualArea(spec, anno) {
+    if (
+      spec?.manual !== true ||
+      spec.type !== 'area' ||
+      anno.type !== 'area' ||
+      !Array.isArray(anno.ring)
+    )
+      return;
+    emitAreaEvent({
+      type: 'area',
+      ring: anno.ring.map((point) =>
+        Array.isArray(point)
+          ? [point[0], point[1]]
+          : [point.lon ?? point.longitude, point.lat ?? point.latitude],
+      ),
+    });
   }
 
   function abortPending() {
@@ -360,6 +389,7 @@ export function createAnnotationEngine({
               }
               ids.push(anno.id);
               if (!firstAnchor) firstAnchor = anno;
+              emitCompletedManualArea(spec, anno);
               if (typeof resolved.resolveOutline === 'function') {
                 startOutlineUpgrade(
                   anno,
@@ -425,6 +455,7 @@ export function createAnnotationEngine({
           }
           ids.push(anno.id);
           if (!firstAnchor) firstAnchor = anno;
+          emitCompletedManualArea(spec, anno);
           // Progressive: the point is on the board; trace the outline behind the narration.
           if (typeof resolved.resolveOutline === 'function') {
             startOutlineUpgrade(
@@ -965,11 +996,15 @@ export function createAnnotationEngine({
     generation += 1;
     abortPending();
     dropQueuedOutlineUpgrades();
-    if (!annotations.size) return;
+    if (!annotations.size) {
+      emitAreaEvent({ type: 'clear' });
+      return;
+    }
     for (const anno of annotations.values()) renderer.remove(anno);
     annotations.clear();
     renderer.sync(annotations);
     syncAnnotationHold();
+    emitAreaEvent({ type: 'clear' });
   }
 
   /** Begin a graceful fade-out of everything, then remove. */
@@ -1109,6 +1144,7 @@ export function createAnnotationEngine({
         if (tickHandle != null) cancelAnimationFrame(tickHandle);
         tickHandle = null;
         outlineListeners.clear();
+        areaListeners.clear();
         releaseContinuousRender('annotations');
         renderer.destroy();
       }
@@ -1126,6 +1162,15 @@ export function createAnnotationEngine({
       if (destroyed || typeof listener !== 'function') return () => {};
       outlineListeners.add(listener);
       return () => outlineListeners.delete(listener);
+    },
+    /**
+     * Subscribe to completed manual area additions and board clears.
+     * Returns an unsubscribe function.
+     */
+    onAreaChange(listener) {
+      if (destroyed || typeof listener !== 'function') return () => {};
+      areaListeners.add(listener);
+      return () => areaListeners.delete(listener);
     },
 
     /**
