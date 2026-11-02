@@ -93,6 +93,22 @@ test('restart restores baseline and clears prior crossings', async () => {
   assert.deepEqual(result.state.engine.outgoing, []);
 });
 
+test('previous reconstructs the preceding snapshot and baseline stays available', () => {
+  const replay = new VesselFixtureReplay();
+  replay.loadFixture(fixture());
+  replay.start();
+  replay.step();
+
+  const previous = replay.previous();
+  assert.equal(previous.valid, true);
+  assert.equal(previous.state.activeSnapshotIndex, 0);
+  assert.deepEqual(previous.state.engine.incoming, []);
+
+  const baseline = replay.previous();
+  assert.equal(baseline.valid, false);
+  assert.equal(baseline.state.activeSnapshotIndex, 0);
+});
+
 test('rejects malformed fixtures without applying state', () => {
   const replay = new VesselFixtureReplay();
   const invalid = fixture();

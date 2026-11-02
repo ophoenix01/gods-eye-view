@@ -12,12 +12,14 @@ export function initSelectedAreaVesselIntegration({
   replay = new VesselFixtureReplay(),
   fixture,
   fixtureUrl,
+  activateOnArea = false,
 } = {}) {
   let destroyed = false;
   let unsubscribe = () => {};
   const listeners = new Set();
   let loadingSettled = false;
   let pendingManualPolygon = null;
+  const fixtureSource = fixtureUrl ?? fixture ?? null;
 
   const publish = () => {
     const state = replay.getState();
@@ -48,6 +50,11 @@ export function initSelectedAreaVesselIntegration({
     if (event.type !== 'area') return;
     if (!loadingSettled) {
       pendingManualPolygon = event.ring;
+      return;
+    }
+    if (activateOnArea && !replay.fixture) {
+      pendingManualPolygon = event.ring;
+      loading = activateFixture(event.ring);
       return;
     }
     replay.replacePolygon(event.ring);
@@ -92,18 +99,28 @@ export function initSelectedAreaVesselIntegration({
     }
   }
 
-  const initialLoading = fixtureUrl
-    ? loadFixture(fixtureUrl)
-    : fixture
-      ? loadFixture(fixture)
-      : Promise.resolve(null);
+  async function activateFixture(ring) {
+    pendingManualPolygon = ring;
+    if (!fixtureSource) return replay.getState();
+    return loadFixture(fixtureSource);
+  }
+
+  const initialLoading = activateOnArea
+    ? Promise.resolve(null)
+    : fixtureUrl
+      ? loadFixture(fixtureUrl)
+      : fixture
+        ? loadFixture(fixture)
+        : Promise.resolve(null);
   let loading = initialLoading.finally(() => {
     loadingSettled = true;
-    if (applyPendingManualPolygon()) publish();
+    if (!activateOnArea && applyPendingManualPolygon()) publish();
   });
 
   return {
-    loading,
+    get loading() {
+      return loading;
+    },
     loadFixture,
     clear,
     subscribe(listener) {
@@ -117,12 +134,22 @@ export function initSelectedAreaVesselIntegration({
       publish();
       return result;
     },
+    previous() {
+      const result = replay.previous();
+      publish();
+      return result;
+    },
     restart() {
       const result = replay.restart();
       publish();
       return result;
     },
     replacePolygon(ring) {
+      if (activateOnArea && !replay.fixture) {
+        pendingManualPolygon = ring;
+        loading = activateFixture(ring);
+        return replay.getState();
+      }
       if (!loadingSettled) {
         pendingManualPolygon = ring;
         return replay.getState();

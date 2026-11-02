@@ -201,3 +201,51 @@ test('fixtures without a polygon remain inactive until a ring is drawn', async (
   ]);
   assert.equal(integration.getState().activeSnapshotIndex, 0);
 });
+
+test('application activation mode stays inactive until a valid area arrives', async () => {
+  const integration = initSelectedAreaVesselIntegration({
+    annotations: mockAnnotations(),
+    fixture,
+    activateOnArea: true,
+  });
+  await integration.loading;
+
+  assert.equal(integration.getState().fixture, null);
+  assert.equal(integration.getState().activeSnapshotIndex, -1);
+
+  integration.replacePolygon([
+    [20, 20],
+    [30, 20],
+    [20, 30],
+    [20, 20],
+  ]);
+  await integration.loading;
+
+  assert.equal(integration.getState().activeSnapshotIndex, 0);
+  assert.deepEqual(integration.getState().engine.polygon, [
+    [20, 20],
+    [30, 20],
+    [20, 30],
+  ]);
+});
+
+test('fixture activation failure stays isolated and replay remains inactive', async () => {
+  const integration = initSelectedAreaVesselIntegration({
+    annotations: mockAnnotations(),
+    fixture: { snapshots: 'not-an-array' },
+    activateOnArea: true,
+  });
+
+  integration.replacePolygon([
+    [20, 20],
+    [30, 20],
+    [20, 30],
+    [20, 20],
+  ]);
+  await integration.loading;
+
+  const state = integration.getState();
+  assert.equal(state.activeSnapshotIndex, -1);
+  assert.equal(state.frozen, true);
+  assert.equal(state.error.code, 'missing-snapshots');
+});

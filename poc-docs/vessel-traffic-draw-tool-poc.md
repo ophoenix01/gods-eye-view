@@ -49,6 +49,12 @@
 - [x] Empty current lists and crossing lists shall have explicit in-app empty states.
 - [ ] All replay and vessel-result controls shall have keyboard-operable equivalents and visible focus states consistent with the application shell.
 
+#### Map fixture visualization
+
+- [ ] The PoC shall display the vessels from the current fixture snapshot on the map.
+- [ ] Each fixture vessel marker shall display its MMSI.
+- [ ] Fixture vessel markers shall use distinct colours for inside and outside polygon membership.
+
 #### Lifecycle and isolation
 
 - [x] The PoC shall support only one active polygon and one fixture replay session.
@@ -66,6 +72,7 @@
 - [x] Phase 3 - Draw-tool boundary: connect completed draw-tool area rings to the tracking engine, preserve existing draw behavior, and add replacement and clear/reset integration tests.
 - [x] Phase 4 - In-app PoC presentation: add a focused incoming/outgoing/current-membership panel, snapshot timestamp and estimate labeling, empty states, and replay controls.
 - [ ] Add DOM/state tests for panel updates, fixture stepping, play/pause, reset, keyboard controls, and lifecycle teardown.
+- [ ] Phase 7 - Map fixture visualization: add basic visible fixture-vessel markers with MMSI labels and distinct colours for inside and outside polygon membership.
 - [x] Phase 5 - Application wiring and isolation: instantiate the PoC controller from the application shell, isolate it from the live vessel layer, and connect teardown to draw-tool clearing and application destruction.
 - [ ] Verify the standard draw tool, vessel layer, and ordinary application startup remain unaffected outside the PoC fixture mode.
 - [ ] Phase 6 - End-to-end demonstration: add one deterministic maritime-area walkthrough covering drawing, baseline, entry, exit, replacement, reset, and replay restart.

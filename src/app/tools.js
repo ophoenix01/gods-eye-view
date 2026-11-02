@@ -59,6 +59,7 @@ export function createApplicationTools({
   const selectedAreaVessel = initSelectedAreaVesselIntegration({
     annotations,
     fixture: selectedAreaVesselFixtures,
+    activateOnArea: true,
   });
   defer(() => selectedAreaVessel.destroy());
   const selectedAreaVesselPanel = initSelectedAreaVesselPanel({
@@ -69,7 +70,11 @@ export function createApplicationTools({
   // DISPLAY ▸ Draw: the same whiteboard, drawn by hand. It claims the pointer
   // while a session is open, so its teardown belongs to the application
   // lifetime rather than to whoever last pressed the button.
-  const drawTool = initDrawTool({ viewer, annotations });
+  const drawTool = initDrawTool({
+    viewer,
+    annotations,
+    onArea: (ring) => selectedAreaVessel.replacePolygon(ring),
+  });
   defer(() => drawTool?.destroy());
   // DISPLAY ▸ Import: the person's own GeoJSON/KML/KMZ/GPX files, each its
   // own data source. They live for the page session, so the application

@@ -1866,6 +1866,7 @@
       "src/ui/selectedAreaVesselPanel.js",
       "src/data/vesselTrackingEngine.js",
       "src/data/vesselFixtureReplay.js",
+      "src/data/selectedAreaVesselFixtures.json",
       "src/geoDistance.js",
       "src/annotations/annotationResolver.js",
       "src/annotations/hybridAnnotationRenderer.js",

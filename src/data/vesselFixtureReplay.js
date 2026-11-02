@@ -205,6 +205,24 @@ export class VesselFixtureReplay {
     return this.step();
   }
 
+  previous() {
+    if (this.frozen) {
+      return { valid: false, error: this.error, state: this.getState() };
+    }
+    if (this.activeSnapshotIndex <= 0) {
+      return { valid: false, state: this.getState() };
+    }
+
+    const targetIndex = this.activeSnapshotIndex - 1;
+    let result = this.restart();
+    if (!result.valid) return result;
+    for (let index = 1; index <= targetIndex; index += 1) {
+      result = this.step();
+      if (!result.valid) return result;
+    }
+    return result;
+  }
+
   getState() {
     const snapshot =
       this.activeSnapshotIndex >= 0
