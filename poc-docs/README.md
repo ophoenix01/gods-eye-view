@@ -66,3 +66,8 @@ Files added or updated for this PoC, in delivery order:
 12. [specs/selected-area-vessel-draw-integration.md](../specs/selected-area-vessel-draw-integration.md)
 13. [src/annotations/selectedAreaVesselIntegration.js](../src/annotations/selectedAreaVesselIntegration.js)
 14. [src/annotations/selectedAreaVesselIntegration.test.mjs](../src/annotations/selectedAreaVesselIntegration.test.mjs)
+15. [specs/selected-area-vessel-results-panel.md](../specs/selected-area-vessel-results-panel.md)
+16. [src/ui/templates/display-controls.html](../src/ui/templates/display-controls.html)
+17. [src/ui/selectedAreaVesselPanel.js](../src/ui/selectedAreaVesselPanel.js)
+18. [src/ui/styles/controls.css](../src/ui/styles/controls.css)
+19. [src/ui/selectedAreaVesselPanel.test.mjs](../src/ui/selectedAreaVesselPanel.test.mjs)
