@@ -1,41 +1,42 @@
 {
   "polygon": [
-    [0, 0],
-    [10, 0],
-    [0, 10],
-    [0, 0]
+    [-2.5, 49.5],
+    [-0.5, 49.5],
+    [-0.5, 50.5],
+    [-2.5, 50.5],
+    [-2.5, 49.5]
   ],
   "snapshots": [
     {
       "timestamp": "2026-01-01T00:00:00Z",
       "observations": [
-        { "mmsi": "123456789", "latitude": 2, "longitude": 2 },
-        { "mmsi": "987654321", "latitude": 8, "longitude": 8 }
+        { "mmsi": "123456789", "latitude": 50, "longitude": -2 },
+        { "mmsi": "987654321", "latitude": 50, "longitude": 0 }
       ]
     },
     {
       "timestamp": "2026-01-01T00:01:00Z",
       "observations": [
-        { "mmsi": "123456789", "latitude": 2, "longitude": 2 },
-        { "mmsi": "987654321", "latitude": 2, "longitude": 3 }
+        { "mmsi": "123456789", "latitude": 50, "longitude": -2 },
+        { "mmsi": "987654321", "latitude": 50, "longitude": -1 }
       ]
     },
     {
       "timestamp": "2026-01-01T00:02:00Z",
       "observations": [
-        { "mmsi": "123456789", "latitude": 8, "longitude": 8 },
-        { "mmsi": "987654321", "latitude": 2, "longitude": 3 }
+        { "mmsi": "123456789", "latitude": 50, "longitude": 0 },
+        { "mmsi": "987654321", "latitude": 50, "longitude": -1 }
       ]
     },
     {
       "timestamp": "2026-01-01T00:03:00Z",
-      "observations": [{ "mmsi": "987654321", "latitude": 2, "longitude": 3 }]
+      "observations": [{ "mmsi": "987654321", "latitude": 50, "longitude": -1 }]
     },
     {
       "timestamp": "2026-01-01T00:04:00Z",
       "observations": [
-        { "mmsi": "123456789", "latitude": 8, "longitude": 8 },
-        { "mmsi": "987654321", "latitude": 2, "longitude": 3 }
+        { "mmsi": "123456789", "latitude": 50, "longitude": 0 },
+        { "mmsi": "987654321", "latitude": 50, "longitude": -1 }
       ]
     }
   ]

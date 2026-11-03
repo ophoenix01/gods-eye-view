@@ -2,6 +2,7 @@ import { SceneDirector } from '../scenes/director.js';
 import { initAnnotations } from '../annotations/index.js';
 import { initDrawTool } from '../annotations/drawTool.js';
 import { initSelectedAreaVesselIntegration } from '../annotations/selectedAreaVesselIntegration.js';
+import { initSelectedAreaVesselMap } from '../annotations/selectedAreaVesselMap.js';
 import { initSelectedAreaVesselPanel } from '../ui/selectedAreaVesselPanel.js';
 import { initGeoFileImport } from '../ui/geoFileImport.js';
 import { initImageryBoxTool } from '../ui/imageryBoxTool.js';
@@ -67,6 +68,11 @@ export function createApplicationTools({
     document,
   });
   defer(() => selectedAreaVesselPanel?.destroy());
+  const selectedAreaVesselMap = initSelectedAreaVesselMap({
+    integration: selectedAreaVessel,
+    viewer,
+  });
+  defer(() => selectedAreaVesselMap?.destroy());
   // DISPLAY ▸ Draw: the same whiteboard, drawn by hand. It claims the pointer
   // while a session is open, so its teardown belongs to the application
   // lifetime rather than to whoever last pressed the button.

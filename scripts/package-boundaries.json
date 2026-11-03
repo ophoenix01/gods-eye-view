@@ -1863,6 +1863,7 @@
       "src/data/bhoteKoshiShotPaths.js",
       "src/annotations/annotationEngine.js",
       "src/annotations/selectedAreaVesselIntegration.js",
+      "src/annotations/selectedAreaVesselMap.js",
       "src/ui/selectedAreaVesselPanel.js",
       "src/data/vesselTrackingEngine.js",
       "src/data/vesselFixtureReplay.js",
