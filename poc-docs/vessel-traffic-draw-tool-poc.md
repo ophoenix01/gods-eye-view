@@ -47,13 +47,13 @@
 - [x] The PoC shall display incoming and outgoing crossings attributed to MMSI and the current snapshot timestamp.
 - [x] The view shall identify crossing results as snapshot-based estimates rather than exact boundary timestamps.
 - [x] Empty current lists and crossing lists shall have explicit in-app empty states.
-- [ ] All replay and vessel-result controls shall have keyboard-operable equivalents and visible focus states consistent with the application shell.
+- [x] All replay and vessel-result controls shall have keyboard-operable equivalents and visible focus states consistent with the application shell.
 
 #### Map fixture visualization
 
-- [ ] The PoC shall display the vessels from the current fixture snapshot on the map.
-- [ ] Each fixture vessel marker shall display its MMSI.
-- [ ] Fixture vessel markers shall use distinct colours for inside and outside polygon membership.
+- [x] The PoC shall display the vessels from the current fixture snapshot on the map.
+- [x] Each fixture vessel marker shall display its MMSI.
+- [x] Fixture vessel markers shall use distinct colours for inside and outside polygon membership.
 
 #### Lifecycle and isolation
 
@@ -61,7 +61,7 @@
 - [x] Polygon, vessel positions, memberships, crossing history, and replay controls shall remain in memory for the demonstration.
 - [x] Page reload or explicit reset shall remove the demonstration state.
 - [x] Destroying or replacing the PoC controller shall remove its DOM listeners, timers, subscriptions, and UI state without affecting the standard vessel layer or draw tool.
-- [ ] The demonstration shall not provide persistence, alerts, notifications, production monitoring guarantees, operational certification, or multi-zone support.
+- [x] The demonstration shall not provide persistence, alerts, notifications, production monitoring guarantees, operational certification, or multi-zone support.
 
 ## Plan
 
@@ -71,12 +71,12 @@
 - [x] Add unit tests for fixture validation, replay sequencing, restart behavior, rejected snapshots, and baseline membership.
 - [x] Phase 3 - Draw-tool boundary: connect completed draw-tool area rings to the tracking engine, preserve existing draw behavior, and add replacement and clear/reset integration tests.
 - [x] Phase 4 - In-app PoC presentation: add a focused incoming/outgoing/current-membership panel, snapshot timestamp and estimate labeling, empty states, and replay controls.
-- [ ] Add DOM/state tests for panel updates, fixture stepping, play/pause, reset, keyboard controls, and lifecycle teardown.
-- [ ] Phase 7 - Map fixture visualization: add basic visible fixture-vessel markers with MMSI labels and distinct colours for inside and outside polygon membership.
+- [x] Add DOM/state tests for panel updates, fixture stepping, play/pause, reset, keyboard controls, and lifecycle teardown.
+- [x] Phase 7 - Map fixture visualization: add basic visible fixture-vessel markers with MMSI labels and distinct colours for inside and outside polygon membership.
 - [x] Phase 5 - Application wiring and isolation: instantiate the PoC controller from the application shell, isolate it from the live vessel layer, and connect teardown to draw-tool clearing and application destruction.
-- [ ] Verify the standard draw tool, vessel layer, and ordinary application startup remain unaffected outside the PoC fixture mode.
-- [ ] Phase 6 - End-to-end demonstration: add one deterministic maritime-area walkthrough covering drawing, baseline, entry, exit, replacement, reset, and replay restart.
-- [ ] Run focused unit tests, repository formatting checks, the relevant application boundary tests, and the existing browser/manual PoC smoke path.
+- [x] Verify the standard draw tool, vessel layer, and ordinary application startup remain unaffected outside the PoC fixture mode.
+- [x] Phase 6 - End-to-end demonstration: add one deterministic maritime-area walkthrough covering drawing, baseline, entry, exit, replacement, reset, and replay restart.
+- [x] Run focused unit tests, repository formatting checks, the relevant application boundary tests, and the existing browser/manual PoC smoke path.
 - [x] Update the PoC README file-change list with every source, test, documentation, and specification path added or updated for each remaining phase.
 - [x] Document sampling limitations in the final demo-facing copy so users do not interpret fixture crossings as exact real-time vessel events.
 
@@ -90,10 +90,10 @@
 - [x] Clear the draw board and confirm polygon, membership, crossing, fixture, and replay state are removed.
 - [x] Step through the deterministic fixtures and confirm the documented MMSI appears under incoming or outgoing at each crossing snapshot.
 - [x] Restart replay and confirm old crossings and memberships are absent from the baseline view.
-- [ ] Play, pause, step, and reset using keyboard and pointer input; confirm controls expose visible focus and correct replay state.
-- [ ] Inspect the demo without network access and confirm it completes using fixtures only.
+- [x] Play, pause, step, and reset using keyboard and pointer input; confirm controls expose visible focus and correct replay state.
+- [x] Inspect the demo without network access and confirm it completes using fixtures only.
 - [x] Confirm invalid fixture records and duplicate MMSIs produce visible rejection behavior without changing the prior displayed state.
 - [x] Run `npm run format:check` and confirm the PoC files conform to repository formatting.
 - [x] Run the repository unit-test command appropriate to the changed files and confirm all focused and boundary tests pass.
-- [ ] Run the application/manual smoke path and confirm ordinary draw-tool and vessel-layer behavior remains intact when the PoC is inactive.
+- [x] Run the application/manual smoke path and confirm ordinary draw-tool and vessel-layer behavior remains intact when the PoC is inactive.
 - [x] Confirm the PoC README and specification clearly identify fixtures and snapshot estimates, and exclude persistence, alerts, operations guarantees, and multiple zones.
