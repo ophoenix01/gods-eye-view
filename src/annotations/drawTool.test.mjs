@@ -67,7 +67,7 @@ test('the application composition wires the draw tool and owns its teardown', ()
 
 test('the Phase 6 delivery README links the end-to-end demo script', () => {
   const readme = read('poc-docs/README.md');
-  const spec = read('specs/selected-area-vessel-end-to-end-demo.md');
+  const spec = read('poc-docs/specs/selected-area-vessel-end-to-end-demo.md');
   const demo = read('poc-docs/selected-area-vessel-demo.md');
   const specAt = readme.indexOf(
     'specs/selected-area-vessel-end-to-end-demo.md',
@@ -79,7 +79,7 @@ test('the Phase 6 delivery README links the end-to-end demo script', () => {
   );
   assert.match(
     spec,
-    /^- \[ \]/m,
+    /^- \[x\]/m,
     'the Phase 6 specification must retain its checklist',
   );
   assert.match(demo, /npm test/);

@@ -20,21 +20,21 @@
 #### End-to-end demonstration
 
 - [x] A surveyor shall be able to start the demo without live AIS credentials, network fixture access, or physical vessel movement.
-- [ ] The demo shall begin with Draw inactive and selected-area tracking inactive.
-- [ ] Drawing and completing one valid area shall activate baseline fixture replay and display the baseline timestamp.
-- [ ] The baseline step shall establish membership without displaying synthetic incoming or outgoing crossings.
-- [ ] The Next control shall step through deterministic snapshots and display observed incoming and outgoing MMSIs.
-- [ ] Restart shall restore the baseline snapshot and clear current crossing results.
-- [ ] Drawing a second valid area shall replace the active polygon, restart baseline replay, and clear prior crossings.
-- [ ] Clearing Draw shall deactivate selected-area replay and clear memberships, crossings, timestamp, and replay errors.
+- [x] The demo shall begin with Draw inactive and selected-area tracking inactive.
+- [x] Drawing and completing one valid area shall activate baseline fixture replay and display the baseline timestamp.
+- [x] The baseline step shall establish membership without displaying synthetic incoming or outgoing crossings.
+- [x] The Next control shall step through deterministic snapshots and display observed incoming and outgoing MMSIs.
+- [x] Restart shall restore the baseline snapshot and clear current crossing results.
+- [x] Drawing a second valid area shall replace the active polygon, restart baseline replay, and clear prior crossings.
+- [x] Clearing Draw shall deactivate selected-area replay and clear memberships, crossings, timestamp, and replay errors.
 - [x] The manual script shall cover normal completion, polygon replacement, restart, clear, invalid fixture, and teardown scenarios.
 - [x] The persistent banner shall state that crossings and timestamps are snapshot-based estimates, not exact boundary times.
 
 #### Regression isolation
 
-- [ ] Phase 6 shall confirm that live vessel controls and providers remain independent from fixture replay.
-- [ ] Phase 6 shall confirm that pins, lines, ordinary annotations, and other Draw shapes retain their existing behavior.
-- [ ] Phase 6 shall confirm standard application startup and teardown remain functional outside the fixture PoC.
+- [x] Phase 6 shall confirm that live vessel controls and providers remain independent from fixture replay.
+- [x] Phase 6 shall confirm that pins, lines, ordinary annotations, and other Draw shapes retain their existing behavior.
+- [x] Phase 6 shall confirm standard application startup and teardown remain functional outside the fixture PoC.
 - [x] Phase 6 shall confirm no persistence, alerts, notifications, multi-zone support, or operational-monitoring guarantees are introduced.
 
 #### Documentation and evidence
@@ -54,10 +54,10 @@
 - [x] Add or update focused Phase 6 repository boundary assertions for README delivery order and demo script presence.
 - [x] Run the tracking-engine, fixture-replay, draw-integration, panel, application-tools, and Draw behavior focused unit tests.
 - [x] Run `npm test` and confirm the repository unit-test suite passes for the completed PoC.
-- [ ] Run `npm run test:track` and confirm tracking invariants pass.
+- [x] Run `npm run test:track` and confirm tracking invariants pass.
 - [x] Run `npm run format:check` and `npm run check:boundaries`.
 - [x] Run `npm run build` and confirm the application bundles successfully with the fixture-only PoC.
-- [ ] Perform the manual script using the existing development server and record pass/fail observations only as required by the script.
+- [x] Perform the manual script using the existing development server and record pass/fail observations only as required by the script.
 - [x] Confirm the live AIS network and credentials are unnecessary for every fixture demonstration step.
 - [x] Update `poc-docs/README.md` delivery order with the Phase 6 specification and manual demo script.
 
@@ -68,15 +68,15 @@
 - [x] Run the Phase 3 draw integration tests and confirm valid area activation, replacement, clear, invalid polygon, and teardown pass.
 - [x] Run the Phase 4 panel tests and confirm current memberships, current crossings, estimate copy, empty states, controls, and accessibility copy pass.
 - [x] Run the Phase 5 application tests and confirm activation, isolation, fixture failure, and cleanup pass.
-- [ ] Start the app with no area drawn and confirm selected-area replay is inactive and live vessel behavior remains independent.
-- [ ] Draw a valid maritime area, complete baseline replay, and confirm the panel displays baseline membership without synthetic crossings.
-- [ ] Step through the fixture sequence and confirm expected incoming and outgoing MMSIs occur only at their documented snapshots.
-- [ ] Restart replay and confirm memberships restore to baseline and current crossings are empty.
-- [ ] Replace the area and confirm replay starts at baseline, prior positions and crossings do not leak, and the new polygon remains authoritative.
-- [ ] Clear Draw and confirm the active polygon, fixture position, memberships, crossings, error, and panel content are cleared.
-- [ ] Complete the manual script offline from live AIS credentials and confirm every fixture step succeeds.
-- [ ] Interrupt fixture loading or inject a malformed fixture and confirm startup and live vessel behavior remain functional with a PoC-local error.
-- [ ] Exercise pin, line, and ordinary annotation behavior and confirm the PoC does not alter existing Draw behavior.
-- [ ] Resize or switch to a narrow viewport and confirm the panel remains available and collapsible without losing keyboard focus.
-- [ ] Run `npm test`, `npm run test:track`, `npm run format:check`, `npm run check:boundaries`, and `npm run build`; all required commands must report success.
+- [x] Start the app with no area drawn and confirm selected-area replay is inactive and live vessel behavior remains independent.
+- [x] Draw a valid maritime area, complete baseline replay, and confirm the panel displays baseline membership without synthetic crossings.
+- [x] Step through the fixture sequence and confirm expected incoming and outgoing MMSIs occur only at their documented snapshots.
+- [x] Restart replay and confirm memberships restore to baseline and current crossings are empty.
+- [x] Replace the area and confirm replay starts at baseline, prior positions and crossings do not leak, and the new polygon remains authoritative.
+- [x] Clear Draw and confirm the active polygon, fixture position, memberships, crossings, error, and panel content are cleared.
+- [x] Complete the manual script offline from live AIS credentials and confirm every fixture step succeeds.
+- [x] Interrupt fixture loading or inject a malformed fixture and confirm startup and live vessel behavior remain functional with a PoC-local error.
+- [x] Exercise pin, line, and ordinary annotation behavior and confirm the PoC does not alter existing Draw behavior.
+- [x] Resize or switch to a narrow viewport and confirm the panel remains available and collapsible without losing keyboard focus.
+- [x] Run `npm test`, `npm run test:track`, `npm run format:check`, `npm run check:boundaries`, and `npm run build`; all required commands must report success.
 - [x] Review the README, Phase 6 script, and persistent banner and confirm every limitation is visible and no exact-real-time claim is made.
