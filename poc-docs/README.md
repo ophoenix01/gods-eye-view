@@ -73,3 +73,5 @@ Files added or updated for this PoC, in delivery order:
 19. [src/ui/selectedAreaVesselPanel.test.mjs](../src/ui/selectedAreaVesselPanel.test.mjs)
 20. [specs/selected-area-vessel-application-lifecycle.md](../specs/selected-area-vessel-application-lifecycle.md)
 21. [src/app/tools.js](../src/app/tools.js) - Phase 5 application lifetime and lazy Draw activation wiring
+22. [specs/selected-area-vessel-end-to-end-demo.md](../specs/selected-area-vessel-end-to-end-demo.md)
+23. [poc-docs/selected-area-vessel-demo.md](selected-area-vessel-demo.md)

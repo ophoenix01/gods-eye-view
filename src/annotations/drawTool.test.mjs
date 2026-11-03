@@ -65,6 +65,33 @@ test('the application composition wires the draw tool and owns its teardown', ()
   assert.ok(deferAt > drawAt, 'the shell must defer the draw tool teardown');
 });
 
+test('the Phase 6 delivery README links the end-to-end demo script', () => {
+  const readme = read('poc-docs/README.md');
+  const spec = read('specs/selected-area-vessel-end-to-end-demo.md');
+  const demo = read('poc-docs/selected-area-vessel-demo.md');
+  const specAt = readme.indexOf(
+    'specs/selected-area-vessel-end-to-end-demo.md',
+  );
+  const demoAt = readme.indexOf('poc-docs/selected-area-vessel-demo.md');
+  assert.ok(
+    specAt >= 0 && demoAt > specAt,
+    'Phase 6 deliverables must follow application lifecycle delivery',
+  );
+  assert.match(
+    spec,
+    /^- \[ \]/m,
+    'the Phase 6 specification must retain its checklist',
+  );
+  assert.match(demo, /npm test/);
+  assert.match(demo, /npm run test:track/);
+  assert.match(demo, /snapshot-based|sampling estimates/i);
+  const template = read('src/ui/templates/display-controls.html');
+  assert.match(
+    template,
+    /class="selected-area-vessel-estimate">Crossings and timestamps are snapshot-based estimates, not exact boundary times/,
+  );
+});
+
 test('the engine resolves manual geometry before any name resolution', () => {
   const engine = read('src/annotations/annotationEngine.js');
   const resolveAt = engine.indexOf(

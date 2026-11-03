@@ -22,8 +22,8 @@ test('maps memberships and MMSIs numerically', () => {
   const view = mapSelectedAreaVesselState(state());
   assert.deepEqual(view.inside, ['3', '20']);
   assert.deepEqual(view.outside, ['9', '100']);
-  assert.equal(view.incoming[0].mmsi, '20');
-  assert.equal(view.incoming[0].timestamp, '2026-01-01T00:00:00Z');
+  assert.deepEqual(view.incoming, ['20']);
+  assert.deepEqual(view.outgoing, ['9']);
 });
 
 test('maps empty lists and complete replay controls', () => {
