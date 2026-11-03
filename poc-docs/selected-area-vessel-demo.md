@@ -40,10 +40,10 @@ It contains two deterministic MMSIs:
 - `123456789`
 - `987654321`
 
-The default polygon represents the fixed fixture area of
-`(0, 0)`, `(10, 0)`, `(0, 10)`, and `(0, 0)`; the operator's drawn ring becomes
-authoritative when replay activates. The recommended first area is one that
-includes `(2, 2)` and excludes `(8, 8)`.
+The default polygon represents an English Channel fixture area around
+longitude `-2.5` to `-0.5` and latitude `49.5` to `50.5`; the operator's drawn
+ring becomes authoritative when replay activates. The recommended first area
+includes `(50, -2)` and excludes `(50, 0)`.
 
 | Snapshot | Timestamp | Expected membership change |
 |---|---|---|
