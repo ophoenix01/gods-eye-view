@@ -20,17 +20,6 @@ export function mapSelectedAreaVesselState(state = {}) {
       BigInt(a) < BigInt(b) ? -1 : BigInt(a) > BigInt(b) ? 1 : 0,
     );
 
-  const crossings = (entries) =>
-    numericMmsis(entries).map((mmsi) => ({
-      mmsi,
-      timestamp:
-        (entries || []).find((entry) => normalizeMmsi(entry.mmsi) === mmsi)
-          ?.timestamp ||
-        state.timestamp ||
-        null,
-      estimate: ESTIMATE_COPY,
-    }));
-
   return {
     active: Boolean(polygon),
     frozen,
@@ -39,8 +28,8 @@ export function mapSelectedAreaVesselState(state = {}) {
     timestamp: state.timestamp || null,
     inside: numericMmsis(engine.inside || []),
     outside: numericMmsis(engine.outside || []),
-    incoming: crossings(engine.incoming || []),
-    outgoing: crossings(engine.outgoing || []),
+    incoming: numericMmsis(engine.incoming || []),
+    outgoing: numericMmsis(engine.outgoing || []),
     error:
       frozen && state.error
         ? `${state.error.code}${state.error.reason ? `: ${state.error.reason}` : ''}`
@@ -66,10 +55,7 @@ function setList(list, values, emptyText = 'None') {
   }
   for (const value of values) {
     const item = list.ownerDocument.createElement('li');
-    item.textContent =
-      typeof value === 'string'
-        ? value
-        : `${value.mmsi} - ${value.timestamp || 'Unknown timestamp'} - ${value.estimate}`;
+    item.textContent = typeof value === 'string' ? value : String(value.mmsi);
     list.appendChild(item);
   }
 }
