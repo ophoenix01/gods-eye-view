@@ -132,6 +132,12 @@ The manual demo passes when Draw activation, baseline membership, deterministic
 Next transitions, Restart, replacement, clear, and teardown all match the
 expected fixture state above. Live AIS credentials are unnecessary.
 
+## Cleanup
+
+Clear Draw, collapse any demo-only controls, and close the browser tab. No
+persistent fixture state, alerts, credentials, or network subscriptions are
+created by the demo.
+
 ## Known limits
 
 Fixture replay uses snapshot-based observations. AIS or fixture sampling can
@@ -141,12 +147,11 @@ boundary times. This PoC
 does not persist results, support multiple zones, send alerts, provide
 operational monitoring guarantees, or replace live maritime surveillance.
 
-## Cleanup
+Given more time I would begin the implementation of integrating the live vessels coordiantes with the draw tool logic, in order to display the information in full. This would then provide a real time snapshot of the vessel activities in that area, with the potential of adding previous history too depending on how far back the vessel data goes. The UI needs cleaning up too and I would like to have included it in it's own custom UI section, with a sidebar for the selected-area vessel history.
 
-Clear Draw, collapse any demo-only controls, and close the browser tab. No
-persistent fixture state, alerts, credentials, or network subscriptions are
-created by the demo.
+## Governance
 
+Since the demo only uses the open-source code from the God's eye View project, there is no considerations beyond what lies in the application. If live vessel integration was added, then the AISStream information would have to be considered. Vessel identifiers can point to people. MMSI, name and track can be linked to an owner or crew, especially for fishing boats and recreational craft. Whether that counts as personal data under UK GDPR depends on context, so it would need to be treated carefully.
 
 ## File changes
 
